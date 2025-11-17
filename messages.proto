@@ -145,6 +145,13 @@ message UseConfig{
     repeated Use uses = 1;
 }
 
+
+//TBlock Backplane Config
+//switch signals on the backplane
+message BPLSwitchConfig {
+    repeated Mux muxes = 1;
+}
+
 message SignalGeneratorConfig {
     enum WaveForm {
         SINE = 0;
@@ -203,6 +210,7 @@ message Config {
         PortConfig port_config = 23;
         UseConfig use_config = 24;
         BackpanelConfig backpanel_config = 25;
+        BPLSwitchConfig bpl_switch_config = 26;
 
         SimConfig sim_config = 1000;
     }
@@ -396,6 +404,7 @@ message Entity {
         CTRL_BLOCK = 9;
         T_BLOCK = 10;
         BACK_PANEL = 11;
+        BACK_PANEL_T_BLOCK = 12;
         DEVICE = 30;
     };
 
