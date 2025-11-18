@@ -251,8 +251,9 @@ message ACLPlugin {
 }
 
 message ACLWire {
-    ACLPlug lhs = 1;
-    ACLPlug rhs = 2;
+    // signal flow is source -> target
+    ACLPlug source = 1;
+    ACLPlug target = 2;
 }
 
 message ACLPlug {
