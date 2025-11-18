@@ -41,3 +41,4 @@ pb.UseConfig.uses max_count:96
 pb.TemperatureDataset.measurements max_count:64
 pb.OverloadStatus.elements type:FT_POINTER;
 pb.DaqData.scaling max_count:48
+pb.BPLSwitchConfig.muxes max_count:64;
