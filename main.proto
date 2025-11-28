@@ -174,6 +174,11 @@ message FrontPanelConfig {
     uint32 leds = 1;
 }
 
+message ACLPinSignal {
+    string signal = 1;
+    uint32 pin = 2;
+}
+
 message PortConfig {
     enum AclState {
         INTERNAL = 0;
@@ -181,6 +186,10 @@ message PortConfig {
     }
 
     repeated AclState states = 1;
+
+    // conveys names of singals mapped to ACL_IN/ACL_OUT pins
+    repeated ACLPinSignal inputs = 2;
+    repeated ACLPinSignal outputs = 3;
 }
 
 message BackpanelConfig {
@@ -266,16 +275,8 @@ message ACLPlug {
     Kind kind = 2;
 }
 
-message ACLBind {
-    uint32 acl = 1;
-    string plugin = 2;
-    uint32 pin = 3;
-}
-
 message ACLConfig {
     repeated ACLPlugin plugins = 1;
-    //repeated ACLBind inputs = 2;
-    //repeated ACLBind outputs = 3;
     repeated ACLWire wires = 4;
 };
 
