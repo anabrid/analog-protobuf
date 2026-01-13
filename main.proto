@@ -347,6 +347,10 @@ message UdpDataStreamingCommand {
     fixed32 port = 1;
 }
 
+message UdpDataStreamingRefusedResponse {
+    optional string reason = 1;
+}
+
 message StartRunCommand {
     Run run = 1;
     RunConfig run_config = 2;
@@ -731,6 +735,7 @@ message MessageV1 {
         WriteSystemIdentResponse write_system_ident_response = 313;
         ReadTemperatureResponse read_temperature_response = 314;
         GetOverloadStatusResponse get_overload_status_response = 315;
+        UdpDataStreamingRefusedResponse udp_data_streaming_refused_response = 316;
 
         //from device to device
         CalibrateInitCommand calibrate_init_command = 400;
