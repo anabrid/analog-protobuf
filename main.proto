@@ -152,6 +152,10 @@ message BPLSwitchConfig {
     repeated Mux muxes = 1;
 }
 
+message CmpConfig {
+}
+
+
 message SignalGeneratorConfig {
     enum WaveForm {
         SINE = 0;
@@ -220,6 +224,7 @@ message Config {
         UseConfig use_config = 24;
         BackpanelConfig backpanel_config = 25;
         BPLSwitchConfig bpl_switch_config = 26;
+        CmpConfig cmp_config = 27;
 
         SimConfig sim_config = 1000;
     }
