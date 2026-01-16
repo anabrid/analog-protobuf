@@ -760,12 +760,11 @@ message MessageV2 {
 
 }
 
-
-
 message File{
     Version version = 1;
 
     oneof kind{
         ConfigBundle bundle = 2;
+        Entity entity = 3;
     }
 }
