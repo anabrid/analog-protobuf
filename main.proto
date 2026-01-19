@@ -47,6 +47,7 @@ message CoefConfig {
     message Element{
         uint32 idx = 1;
         float factor = 2;
+        optional float gain_correction = 3;
     }
     repeated Element elements = 1;
 }
