@@ -253,9 +253,8 @@ message ConfigCommand {
     ConfigBundle bundle = 1;
     bool reset_before = 2;
     bool sh_kludge = 3;
-    bool calibrate_mblock = 4;
-    bool calibrate_offset = 5;
-    bool calibrate_routes = 6;
+
+    reserved 4,5,6;
 }
 
 // Simulator-only
@@ -349,8 +348,16 @@ message SyncConfig {
 }
 
 message CalibrationConfig {
-    bool enabled = 1;
-    optional EntityId leader = 2;
+    optional EntityId leader = 1;
+
+    enum Kind{
+        Disabled = 0;
+        Enabled = 1;
+    }
+
+    Kind math = 2;
+    Kind gain = 3;
+    Kind offset = 4;
 }
 
 message UdpDataStreamingCommand {
@@ -366,9 +373,10 @@ message StartRunCommand {
     RunConfig run_config = 2;
     DaqConfig daq_config = 3;
     SyncConfig sync_config = 4;
-    CalibrationConfig calibration_config = 5;
     bool end_repetitive = 6;
     bool clear_queue = 7;
+
+    reserved 5;
 }
 
 message StopRunCommand {}
@@ -602,6 +610,14 @@ message GetSystemIdentCommand {
 
 }
 
+message CalibrationCommand {
+    CalibrationConfig config = 1;
+}
+
+message CalibrationResponse {
+
+}
+
 message CalibrateInitCommand {
 
 }
@@ -732,6 +748,7 @@ message MessageV1 {
         UdpDataStreamingCommand udp_data_streaming_command = 215;
         ReadTemperatureCommand read_temperature_command = 216;
         GetOverloadStatusCommand get_overload_status_command = 217;
+        CalibrationCommand calibration_command = 218;
 
         //from device to client
         DescribeResponse describe_response = 300;
@@ -751,6 +768,7 @@ message MessageV1 {
         ReadTemperatureResponse read_temperature_response = 314;
         GetOverloadStatusResponse get_overload_status_response = 315;
         UdpDataStreamingRefusedResponse udp_data_streaming_refused_response = 316;
+        CalibrationResponse calibration_response = 317;
 
         //from device to device
         CalibrateInitCommand calibrate_init_command = 400;
