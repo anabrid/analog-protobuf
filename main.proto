@@ -297,6 +297,10 @@ message ConfigBundle{
     repeated Config configs = 1;
 }
 
+message DescribeBundle {
+    repeated Entity entities = 1;
+}
+
 enum Prefix {
     NONE = 0;
     MILLI = 1;
@@ -654,6 +658,8 @@ message GetOverloadStatusResponse{
 
 message SuccessMessage {}
 
+message DeviceBusyMessage {}
+
 enum ErrorCode{
     None = 0;
 }
@@ -750,7 +756,9 @@ message MessageV1 {
         CalibrateFinalizeCommand calibrate_finalize_command = 403;
         CalibrateDataCommand calibrate_data_command = 404;
 
+        // between client and proxy
         AuthRequest auth_request = 501;
+        DeviceBusyMessage busy_response = 502;
     }
 
     reserved 500;
