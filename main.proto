@@ -759,6 +759,7 @@ message MessageV1 {
         // between client and proxy
         AuthRequest auth_request = 501;
         DeviceBusyMessage busy_response = 502;
+        PingCommand ping_command = 503;
     }
 
     reserved 500;
