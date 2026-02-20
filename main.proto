@@ -770,11 +770,36 @@ message MessageV2 {
 
 }
 
+/**
+ * Data format capturing the hardware desxcription for a REDAC-like device,
+ * including both the makeup of the hardware (which includes the carriers
+ * individually) as well as their expanded paths which use a 
+ * /stack/wing/carrier format.
+ *
+ * Typically, the compiler takes both as input whereas the runtime only
+ * requires the hierachy-agnostic information.
+ */
+message DeviceDescription{
+    
+    // hardware description as returned by "DescribeCommand"
+    repeated Entity entity = 2;
+
+    // fully expanded carrier paths, prefixed by /stack/wing/... IDs, each
+    // starting at 0, e.g.
+    // /0/1/<MAC> - carrier in stack 0, wing 1
+    repeated string full_paths = 3;
+}
+
+/**
+ * Useful to store configs to file.
+ *
+ * For portable configs, store the device description (hardware abailities)
+ * into the file as well and map actual devices' MAC addresses to the 
+ * device description from here.
+ */
 message File{
     Version version = 1;
 
-    oneof kind{
-        ConfigBundle bundle = 2;
-        Entity entity = 3;
-    }
+    optional ConfigBundle bundle = 2;
+    optional DeviceDescription device = 3;
 }
