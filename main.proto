@@ -786,8 +786,8 @@ message DeviceDescription{
 
     // fully expanded carrier paths, prefixed by /stack/wing/... IDs, each
     // starting at 0, e.g.
-    // /0/1/<MAC> - carrier in stack 0, wing 1
-    repeated string full_paths = 3;
+    // 0/1/2/<MAC> - carrier <MAC> in stack 0, wing 1 as 2nd carrier
+    repeated string full_path = 3;
 }
 
 /**
