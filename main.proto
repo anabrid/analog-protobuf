@@ -475,7 +475,7 @@ message RunStateChangeMessage {
     string reason = 5;
 
     // used to forward message from the proxy
-    EntityId entity = 6;
+    optional EntityId entity = 6;
 }
 
 message IntegerType{
