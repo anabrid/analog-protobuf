@@ -473,6 +473,9 @@ message RunStateChangeMessage {
     RunState new_ = 3;
     Time time = 4;
     string reason = 5;
+
+    // used to forward message from the proxy
+    optional EntityId entity = 6;
 }
 
 message IntegerType{
