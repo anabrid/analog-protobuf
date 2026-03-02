@@ -12,6 +12,7 @@ message AdcChannel {
     uint32 idx = 1;
     double gain = 2;
     double offset = 3;
+    uint64 probe_idx = 4;
 }
 
 message AdcConfig {
@@ -204,6 +205,9 @@ message BackpanelConfig {
     bool is_isolated = 4;
 }
 
+message EntityConfig{
+    Entity entity = 1;
+}
 
 message Config {
     EntityId entity = 1;
@@ -226,6 +230,7 @@ message Config {
         BackpanelConfig backpanel_config = 25;
         BPLSwitchConfig bpl_switch_config = 26;
         CmpConfig cmp_config = 27;
+        EntityConfig entity_config = 28;
 
         SimConfig sim_config = 1000;
     }
@@ -286,7 +291,7 @@ message ACLConfig {
 };
 
 message SimConfig {
-    uint32 k0 = 1;
+    optional uint32 k0 = 1;
     bool with_limits = 2;
     bool only_module_sinks = 3;
     optional ACLConfig acl_config = 4;
@@ -296,6 +301,7 @@ message ConfigBundle{
     repeated Config configs = 1;
 }
 
+//deprecated
 message DescribeBundle {
     repeated Entity entities = 1;
 }
@@ -414,7 +420,7 @@ message Version {
     uint32 patch = 3;
 }
 
-message CarrierLocationMessageV0 {
+message CarrierLocationV0 {
     uint32 stack = 1;
     uint32 carrier = 2;
 }
@@ -449,7 +455,7 @@ message Entity {
     // describes the location of the entity (mostly carriers) in a larger
     // system, e.g. the REDAC
     oneof location {
-        CarrierLocationMessageV0 v0 = 100;
+        CarrierLocationV0 location_v0 = 100;
     }
 }
 
@@ -833,5 +839,7 @@ message File{
     Version version = 1;
 
     optional ConfigBundle bundle = 2;
+
+    //deprecated
     optional DeviceDescription device = 3;
 }
