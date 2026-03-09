@@ -822,10 +822,8 @@ message DeviceDescription{
     // hardware description as returned by "DescribeCommand"
     repeated Entity entity = 2;
 
-    // fully expanded carrier paths, prefixed by /stack/wing/... IDs, each
-    // starting at 0, e.g.
-    // 0/1/2/<MAC> - carrier <MAC> in stack 0, wing 1 as 2nd carrier
-    repeated string full_path = 3;
+    // deprecated - carrier are now included directly in the entity config
+    reserved 3;
 }
 
 /**
@@ -839,7 +837,5 @@ message File{
     Version version = 1;
 
     optional ConfigBundle bundle = 2;
-
-    //deprecated
     optional DeviceDescription device = 3;
 }
