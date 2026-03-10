@@ -837,5 +837,7 @@ message File{
     Version version = 1;
 
     optional ConfigBundle bundle = 2;
-    optional DeviceDescription device = 3;
+
+    // deprecated - was used for DeviceDescription
+    reserved 3;
 }
