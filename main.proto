@@ -229,11 +229,11 @@ message BackpanelConfig {
     bool is_isolated = 4;
 }
 
-message EntityConfig{
+message EntitySpecification{
     Entity entity = 1;
 }
 
-message Config {
+message Item {
     EntityId entity = 1;
     oneof kind {
         AdcConfig adc_config = 10;
@@ -254,8 +254,9 @@ message Config {
         BackpanelConfig backpanel_config = 25;
         BPLSwitchConfig bpl_switch_config = 26;
         CmpConfig cmp_config = 27;
-        EntityConfig entity_config = 28;
+        EntitySpecification entity_specification = 28;
         TraceConfig trace_config = 29;
+
 
         SimConfig sim_config = 1000;
     }
@@ -280,7 +281,7 @@ message ExtractCommand {
     bool recursive = 2;
 }
 message ConfigCommand {
-    ConfigBundle bundle = 1;
+    Module module = 1;
     bool reset_before = 2;
     bool sh_kludge = 3;
 
@@ -322,13 +323,13 @@ message SimConfig {
     optional ACLConfig acl_config = 4;
 }
 
-message ConfigBundle{
-    repeated Config configs = 1;
+message Module{
+    repeated Item items = 1;
 }
 
 //deprecated
 message DescribeBundle {
-    repeated Entity entities = 1;
+    repeated Module entities = 1;
 }
 
 enum Prefix {
@@ -493,7 +494,7 @@ message ResetResponse {
 }
 
 message ExtractResponse {
-    ConfigBundle bundle = 1;
+    Module module = 1;
 }
 
 message ConfigResponse {
@@ -739,10 +740,6 @@ message Envelope{
         //generic messages shall always be supported
         GenericMessage generic = 100;
         MessageV1 message_v1 = 101;
-
-        //message v2 if required
-        //each message which is majorly altered gets a V{N} as postfix
-        MessageV2 message_v2 = 102;
     }
 }
 
@@ -867,29 +864,6 @@ message MessageV1 {
     reserved 500;
 }
 
-message MessageV2 {
-
-
-}
-
-/**
- * Data format capturing the hardware desxcription for a REDAC-like device,
- * including both the makeup of the hardware (which includes the carriers
- * individually) as well as their expanded paths which use a 
- * /stack/wing/carrier format.
- *
- * Typically, the compiler takes both as input whereas the runtime only
- * requires the hierachy-agnostic information.
- */
-message DeviceDescription{
-    
-    // hardware description as returned by "DescribeCommand"
-    repeated Entity entity = 2;
-
-    // deprecated - carrier are now included directly in the entity config
-    reserved 3;
-}
-
 /**
  * Useful to store configs to file.
  *
@@ -900,7 +874,7 @@ message DeviceDescription{
 message File{
     Version version = 1;
 
-    optional ConfigBundle bundle = 2;
+    optional Module module = 2;
 
     // deprecated - was used for DeviceDescription
     reserved 3;
