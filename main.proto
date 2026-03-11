@@ -147,6 +147,30 @@ message UseConfig{
     repeated Use uses = 1;
 }
 
+message TraceSource{
+    //index of entity in entity_ids
+    uint32 entity_idx = 1;
+    uint32 lane = 2;
+}
+
+message TraceSink{
+    uint32 entity_idx = 1;
+    //in case a lane switches lane
+    uint32 lane = 2;
+    optional bool upscaled = 3;
+}
+
+//A Trace has one source and many destinations
+message Trace{
+    TraceSource source = 1;
+    repeated TraceSink sinks = 2;
+}
+
+//Trace config is a more high level Information how devices are connected
+message TraceConfig{
+    repeated EntityId entity_ids = 1;
+    repeated Trace traces = 2;
+}
 
 //TBlock Backplane Config
 //switch signals on the backplane
@@ -231,6 +255,7 @@ message Config {
         BPLSwitchConfig bpl_switch_config = 26;
         CmpConfig cmp_config = 27;
         EntityConfig entity_config = 28;
+        TraceConfig trace_config = 29;
 
         SimConfig sim_config = 1000;
     }
@@ -739,6 +764,43 @@ message AuthRequest{
     }
 }
 
+message Source{
+    enum Kind{
+        MLIR = 0;
+        ANA = 1;
+    }
+
+    Kind kind = 1;
+    string text = 2;
+}
+
+message JitCommand{
+    Source source = 1;
+}
+
+
+message Issue{
+    enum Kind{
+        INFO = 0;
+        WARNING = 1;
+        ERROR = 2;
+    }
+
+    Kind kind = 1;
+    uint32 lane = 2;
+    uint32 col = 3;
+    string reason = 4;
+}
+
+message Diagnosis{
+    repeated Issue issues = 1;
+}
+
+message JitResponse{
+    bool success = 1;
+    Diagnosis diag = 2;
+}
+
 message MessageV1 {
     optional string id = 1;
 
@@ -798,6 +860,8 @@ message MessageV1 {
         AuthRequest auth_request = 501;
         DeviceBusyMessage busy_response = 502;
         PingCommand ping_command = 503;
+        JitCommand jit_command = 504;
+        JitResponse jit_response = 505;
     }
 
     reserved 500;
