@@ -279,6 +279,9 @@ message ResetCommand {
 message ExtractCommand {
     optional EntityId entity = 1;
     bool recursive = 2;
+    bool specification = 3;
+    bool configuration = 4;
+    bool calibration = 5;
 }
 message ConfigCommand {
     Module module = 1;
@@ -483,10 +486,6 @@ message Entity {
     oneof location {
         CarrierLocationV0 location_v0 = 100;
     }
-}
-
-message DescribeResponse {
-    Entity entity = 1;
 }
 
 message ResetResponse {
@@ -807,7 +806,6 @@ message MessageV1 {
 
         //From client to device
         StandByCommand stand_by_command = 200;
-        DescribeCommand describe_command = 201;
         ResetCommand reset_command = 202;
         ExtractCommand extract_command = 203;
         ConfigCommand config_command = 204;
@@ -827,7 +825,6 @@ message MessageV1 {
         CalibrationCommand calibration_command = 218;
 
         //from device to client
-        DescribeResponse describe_response = 300;
         ExtractResponse extract_response = 301;
         ConfigResponse config_response = 302;
         ResetResponse reset_response = 303;
@@ -861,7 +858,7 @@ message MessageV1 {
         JitResponse jit_response = 505;
     }
 
-    reserved 500;
+    reserved 201, 300, 500;
 }
 
 /**
