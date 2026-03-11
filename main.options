@@ -42,3 +42,6 @@ pb.TemperatureDataset.measurements max_count:64
 pb.OverloadStatus.elements type:FT_POINTER;
 pb.DaqData.scaling max_count:48
 pb.BPLSwitchConfig.muxes max_count:72;
+pb.TraceConfig.entity_ids type:FT_POINTER
+pb.TraceConfig.traces type:FT_POINTER
+pb.Trace.sinks type:FT_POINTER
