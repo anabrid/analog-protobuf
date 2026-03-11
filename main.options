@@ -27,7 +27,7 @@ pb.SumConnectionConfig.inputs max_count:32
 pb.SumConnectionConfig.inputs int_size:IS_8
 pb.MessageV1.id max_size:38
 pb.SyslogResponse.entries type:FT_POINTER
-pb.ConfigBundle.configs type:FT_POINTER
+pb.Module.items type:FT_POINTER
 pb.MulConfig.Calibration.offset_x int_size:IS_16
 pb.MulConfig.Calibration.offset_y int_size:IS_16
 pb.MulConfig.Calibration.offset_z int_size:IS_16
