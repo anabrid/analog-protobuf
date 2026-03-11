@@ -432,7 +432,7 @@ message PingCommand {
 }
 
 message RegisterExternalEntitiesCommand {
-    map<uint32, Address> entities = 1;
+    map<string, Address> entities = 1;
 }
 
 message SyslogCommand {}
