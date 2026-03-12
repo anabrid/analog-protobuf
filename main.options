@@ -44,3 +44,4 @@ pb.BPLSwitchConfig.muxes max_count:72;
 pb.DependencyInfo.entity_ids type:FT_POINTER
 pb.DependencyInfo.traces type:FT_POINTER
 pb.Trace.sinks type:FT_POINTER
+pb.IpLookupTable.entries type:FT_POINTER
