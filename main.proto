@@ -149,13 +149,13 @@ message UseConfig{
 
 message TraceSource{
     //index of entity in entity_ids
-    uint32 entity_idx = 1;
+    uint32 node = 1;
     uint32 lane = 2;
 }
 
 message TraceSink{
-    uint32 entity_idx = 1;
-    //in case a lane switches lane
+    uint32 node = 1;
+    //in case a lane is switched
     uint32 lane = 2;
     optional bool upscaled = 3;
 }
