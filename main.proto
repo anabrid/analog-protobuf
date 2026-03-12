@@ -127,25 +127,6 @@ message SwitchConfig {
     repeated Mux muxes = 1;
 }
 
-message Use {
-    //index of lane
-    uint32 idx = 1;
-
-    //Below are source informations
-    //optional source id from registered addresses when source of signal is from different carrier
-    optional uint32 source = 10;
-
-    //Below are target informations
-    //how many times the signal is used
-    uint32 count = 20;
-
-    //check if use of signal is upscaled
-    bool upscaled = 21;
-}
-
-message UseConfig{
-    repeated Use uses = 1;
-}
 
 message TraceSource{
     //index of entity in entity_ids
@@ -167,7 +148,7 @@ message Trace{
 }
 
 //Trace config is a more high level Information how devices are connected
-message TraceConfig{
+message DependencyInfo{
     repeated EntityId entity_ids = 1;
     repeated Trace traces = 2;
 }
@@ -250,16 +231,16 @@ message Item {
         FrontPanelConfig front_panel_config = 21;
         SignalGeneratorConfig signal_generator_config = 22;
         PortConfig port_config = 23;
-        UseConfig use_config = 24;
         BackpanelConfig backpanel_config = 25;
         BPLSwitchConfig bpl_switch_config = 26;
         CmpConfig cmp_config = 27;
         EntitySpecification entity_specification = 28;
-        TraceConfig trace_config = 29;
-
+        DependencyInfo dependency_info = 29;
 
         SimConfig sim_config = 1000;
     }
+
+    reserved 24;
 }
 
 message EntityId {
