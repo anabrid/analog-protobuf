@@ -127,24 +127,13 @@ message SwitchConfig {
     repeated Mux muxes = 1;
 }
 
-
-message TraceSource{
-    //index of entity in entity_ids
-    uint32 node = 1;
-    uint32 lane = 2;
-}
-
-message TraceSink{
-    uint32 node = 1;
-    //in case a lane is switched
-    uint32 lane = 2;
-    optional bool upscaled = 3;
-}
-
-//A Trace has one source and many destinations
 message Trace{
-    TraceSource source = 1;
-    repeated TraceSink sinks = 2;
+    uint32 source_node = 1;
+    uint32 source_lane = 2;
+
+    uint32 sink_node = 3;
+    uint32 sink_lane = 4;
+    bool sink_upscaled = 5;
 }
 
 //Trace config is a more high level Information how devices are connected
