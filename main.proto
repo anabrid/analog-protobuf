@@ -10,9 +10,9 @@ message DeviceConfig {}
 
 message AdcChannel {
     uint32 idx = 1;
-    int32 probe_idx = 4;
     double gain = 2;
     double offset = 3;
+    uint32 probe_idx = 4;
 }
 
 message AdcConfig {
@@ -531,9 +531,9 @@ message DataType{
 
 message DaqScaling{
     uint32 idx = 1;
-    uint32 probe = 4;
     double gain = 2;
     double offset = 3;
+    uint32 probe = 4;
 }
 
 message DaqData {
