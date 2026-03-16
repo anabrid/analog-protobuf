@@ -12,7 +12,7 @@ message AdcChannel {
     uint32 idx = 1;
     double gain = 2;
     double offset = 3;
-    uint32 probe_idx = 4;
+    uint32 probe = 4;
 }
 
 message AdcConfig {
