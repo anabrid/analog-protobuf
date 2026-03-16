@@ -529,17 +529,10 @@ message DataType{
     }
 }
 
-message DaqScaling{
-    uint32 idx = 1;
-    double gain = 2;
-    double offset = 3;
-    uint32 probe = 4;
-}
-
 message DaqData {
     bytes data = 1;
     DataType type = 4;
-    repeated DaqScaling scaling = 5;
+    repeated AdcChannel channels = 5;
     uint32 sample_count = 6;
     uint32 channel_count = 7;
     reserved 2, 3;
