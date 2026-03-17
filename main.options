@@ -39,7 +39,7 @@ pb.Address.data max_size:4
 pb.LimiterConfig.elements max_count:8
 pb.TemperatureDataset.measurements max_count:64
 pb.OverloadStatus.elements type:FT_POINTER;
-pb.DaqData.scaling max_count:48
+pb.DaqData.channels max_count:48
 pb.BPLSwitchConfig.muxes max_count:72;
 pb.DependencyInfo.entity_ids type:FT_POINTER
 pb.DependencyInfo.traces type:FT_POINTER
