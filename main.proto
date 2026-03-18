@@ -816,6 +816,8 @@ message FlashBegin{
 message FlashWrite{
     //Data must not exceed chunk size received by FlachAck
     bytes data = 1;
+    //Offset of chunk in firmware
+    uint64 offset = 2;
 };
 
 //Finishes a firmware update
