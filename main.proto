@@ -786,25 +786,61 @@ message JitResponse{
 }
 
 message FlashCommand{
-
     oneof kind{
-        FlashInit init = 10;
-        FlashData data = 11;
-        FlashComplete complete = 12;
+        FlashBegin begin = 10;
+        FlashWrite write = 11;
+        FlashEnd end = 12;
+        FlashAbort abort = 13;
     }
 };
 
 message FlashResponse{
-
+    oneof kind{
+        FlashAck ack = 10;
+        FlashFailure failure = 11;
+        FlashSuccess success = 12;
+    }
 }
 
-message FlashInit{
+//This messages starts a upload
+//Response: ack or failure
+message FlashBegin{
+    //Size of the new firmware in bytes
+    uint64 size = 1;
+    //Sha256-3 Hash of firmware to check at the end
+    bytes hash = 2;
+};
+
+//Writes chunk of firmware
+//Response: success or failure
+message FlashWrite{
+    //Data must not exceed chunk size received by FlachAck
+    bytes data = 1;
+};
+
+//Finishes a firmware update
+//Response: success or failure
+message FlashEnd{
 
 };
-message FlashData{
+
+//Response: success or failure
+message FlashAbort{
 
 };
-message FlashComplete{
+
+//Responds with maximum chunk size
+message FlashAck{
+    uint64 chunk_size = 1;
+};
+
+//Reports an error with a reason
+message FlashFailure{
+    string reason = 1;
+};
+
+//Confirms successful execution of a command
+message FlashSuccess{
 
 };
 
@@ -878,7 +914,7 @@ message MessageV1 {
  * Useful to store configs to file.
  *
  * For portable configs, store the device description (hardware abailities)
- * into the file as well and map actual devices' MAC addresses to the 
+ * into the file as well and map actual devices' MAC addresses to the
  * device description from here.
  */
 message File{
