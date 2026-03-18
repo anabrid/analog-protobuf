@@ -49,3 +49,4 @@ pb.SelectConnectionConfig.output int_size:IS_8
 pb.Mux.state int_size:IS_8
 pb.SumConnectionConfig.output int_size:IS_8
 pb.UpscaleConfig.lane int_size:IS_8
+pb.FrontPanelIOConfig.io_modes max_count:4

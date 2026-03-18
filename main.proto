@@ -170,8 +170,21 @@ message SignalGeneratorConfig {
     repeated float dac_outputs = 9;
 }
 
+// LUCIDAC
 message FrontPanelConfig {
     uint32 leds = 1;
+}
+
+// REDAC
+message FrontPanelIOConfig {
+    enum FrontPanelIOMode {
+        ANALOG_OUT = 0;
+        ANALOG_IN = 1;
+        DIGITAL_OUT = 2;
+        DIGITAL_IN = 3;
+    }
+
+    repeated FrontPanelIOMode io_modes = 1;
 }
 
 message ACLPinSignal {
@@ -235,6 +248,7 @@ message Item {
         EntitySpecification entity_specification = 28;
         DependencyInfo dependency_info = 29;
         IpLookupTable ip_lookup_table = 30;
+        FrontPanelIOConfig front_panel_io_config = 31;
 
         SimConfig sim_config = 1000;
     }
