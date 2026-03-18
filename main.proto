@@ -785,6 +785,29 @@ message JitResponse{
     Diagnosis diag = 2;
 }
 
+message FlashCommand{
+
+    oneof kind{
+        FlashInit init = 10;
+        FlashData data = 11;
+        FlashComplete complete = 12;
+    }
+};
+
+message FlashResponse{
+
+}
+
+message FlashInit{
+
+};
+message FlashData{
+
+};
+message FlashComplete{
+
+};
+
 message MessageV1 {
     optional string id = 1;
 
@@ -811,6 +834,7 @@ message MessageV1 {
         ReadTemperatureCommand read_temperature_command = 216;
         GetOverloadStatusCommand get_overload_status_command = 217;
         CalibrationCommand calibration_command = 218;
+        FlashCommand flash_command = 219;
 
         //from device to client
         ExtractResponse extract_response = 301;
@@ -830,6 +854,7 @@ message MessageV1 {
         GetOverloadStatusResponse get_overload_status_response = 315;
         UdpDataStreamingRefusedResponse udp_data_streaming_refused_response = 316;
         CalibrationResponse calibration_response = 317;
+        FlashResponse flash_response = 318;
 
         //from device to device
         CalibrateInitCommand calibrate_init_command = 400;
