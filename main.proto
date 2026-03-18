@@ -814,7 +814,7 @@ message FlashBegin{
 //Writes chunk of firmware
 //Response: success or failure
 message FlashWrite{
-    //Data must not exceed chunk size received by FlachAck
+    //Data must not exceed chunk size received by FlashAck
     bytes data = 1;
     //Offset of chunk in firmware
     uint64 offset = 2;
