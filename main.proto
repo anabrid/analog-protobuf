@@ -534,7 +534,7 @@ message DaqData {
     DataType type = 4;
     repeated AdcChannel channels = 5;
     uint32 sample_count = 6;
-    uint32 channel_count = 7;
+    uint32 channel_stride = 7;
     reserved 2, 3;
 }
 
