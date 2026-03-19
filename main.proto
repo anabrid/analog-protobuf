@@ -785,26 +785,26 @@ message JitResponse{
     Diagnosis diag = 2;
 }
 
-message FlashCommand{
+message UpdateCommand{
     oneof kind{
-        FlashBegin begin = 10;
-        FlashWrite write = 11;
-        FlashCommit commit = 12;
-        FlashAbort abort = 13;
+        UpdateBegin begin = 10;
+        UpdateWrite write = 11;
+        UpdateCommit commit = 12;
+        UpdateAbort abort = 13;
     }
 };
 
-message FlashResponse{
+message UpdateResponse{
     oneof kind{
-        FlashAck ack = 10;
-        FlashFailure failure = 11;
-        FlashSuccess success = 12;
+        UpdateAck ack = 10;
+        UpdateFailure failure = 11;
+        UpdateSuccess success = 12;
     }
 }
 
 //This messages starts a upload
 //Response: ack or failure
-message FlashBegin{
+message UpdateBegin{
     //Size of the new firmware in bytes
     uint64 size = 1;
     //Sha256-3 Hash of firmware to check at commit
@@ -813,8 +813,8 @@ message FlashBegin{
 
 //Writes chunk of firmware
 //Response: success or failure
-message FlashWrite{
-    //Data must not exceed chunk size received by FlashAck
+message UpdateWrite{
+    //Data must not exceed chunk size received by UpdateAck
     bytes data = 1;
     //Offset of chunk in firmware
     uint64 offset = 2;
@@ -822,27 +822,27 @@ message FlashWrite{
 
 //Finishes a firmware update
 //Response: success or failure
-message FlashCommit{
+message UpdateCommit{
 
 };
 
 //Response: success or failure
-message FlashAbort{
+message UpdateAbort{
 
 };
 
 //Responds with maximum chunk size
-message FlashAck{
+message UpdateAck{
     uint64 chunk_size = 1;
 };
 
 //Reports an error with a reason
-message FlashFailure{
+message UpdateFailure{
     string reason = 1;
 };
 
 //Confirms successful execution of a command
-message FlashSuccess{
+message UpdateSuccess{
 
 };
 
@@ -872,7 +872,7 @@ message MessageV1 {
         ReadTemperatureCommand read_temperature_command = 216;
         GetOverloadStatusCommand get_overload_status_command = 217;
         CalibrationCommand calibration_command = 218;
-        FlashCommand flash_command = 219;
+        UpdateCommand update_command = 219;
 
         //from device to client
         ExtractResponse extract_response = 301;
@@ -892,7 +892,7 @@ message MessageV1 {
         GetOverloadStatusResponse get_overload_status_response = 315;
         UdpDataStreamingRefusedResponse udp_data_streaming_refused_response = 316;
         CalibrationResponse calibration_response = 317;
-        FlashResponse flash_response = 318;
+        UpdateResponse update_response = 318;
 
         //from device to device
         CalibrateInitCommand calibrate_init_command = 400;
