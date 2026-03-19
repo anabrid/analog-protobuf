@@ -50,6 +50,6 @@ pb.Mux.state int_size:IS_8
 pb.SumConnectionConfig.output int_size:IS_8
 pb.UpscaleConfig.lane int_size:IS_8
 pb.FrontPanelIOConfig.io_modes max_count:4
-pb.FlashBegin.hash max_size:64
-pb.FlashWrite.data max_size:1024
-pb.FlashFailure.reason max_size:256
+pb.UpdateBegin.hash max_size:64
+pb.UpdateWrite.data max_size:1024
+pb.UpdateFailure.reason max_size:256
