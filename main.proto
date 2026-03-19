@@ -236,8 +236,12 @@ message Item {
         ItorConfig itor_config = 15;
         SelectConfig select_config = 16;
         SumConfig sum_config = 17;
+        //top is good
+
         SwitchConfig switch_config = 18;
         DeviceConfig device_config = 19;
+
+        //bottom is good
         LimiterConfig limiter_config = 20;
         FrontPanelConfig front_panel_config = 21;
         SignalGeneratorConfig signal_generator_config = 22;
