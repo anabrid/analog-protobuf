@@ -789,7 +789,7 @@ message FlashCommand{
     oneof kind{
         FlashBegin begin = 10;
         FlashWrite write = 11;
-        FlashEnd end = 12;
+        FlashCommit commit = 12;
         FlashAbort abort = 13;
     }
 };
@@ -807,7 +807,7 @@ message FlashResponse{
 message FlashBegin{
     //Size of the new firmware in bytes
     uint64 size = 1;
-    //Sha256-3 Hash of firmware to check at the end
+    //Sha256-3 Hash of firmware to check at commit
     bytes hash = 2;
 };
 
@@ -822,7 +822,7 @@ message FlashWrite{
 
 //Finishes a firmware update
 //Response: success or failure
-message FlashEnd{
+message FlashCommit{
 
 };
 
