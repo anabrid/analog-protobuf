@@ -79,6 +79,7 @@ message SelectConfig {
         GROUND = 0;
         POS_REF = 1;
         NEG_REF = 2;
+        ANALOG_INPUT = 3;
     }
 
     enum Magnitude {
