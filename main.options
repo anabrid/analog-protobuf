@@ -53,3 +53,4 @@ pb.FrontPanelIOConfig.io_modes max_count:4
 pb.UpdateBegin.hash max_size:64
 pb.UpdateWrite.data max_size:1024
 pb.UpdateFailure.reason max_size:256
+pb.CalibrateDataCommand.data max_count:32

@@ -672,7 +672,7 @@ message CalibrationData {
 }
 
 message CalibrateDataCommand {
-    CalibrationData data = 1;
+    repeated CalibrationData data = 1;
 }
 
 message ReadTemperatureCommand {
