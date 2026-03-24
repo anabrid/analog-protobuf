@@ -31,6 +31,27 @@ message MulConfig {
     repeated Calibration calibration = 1;
 }
 
+message MDRConfig {
+    message Calibration {
+        uint32 offset_x = 1;
+        uint32 offset_y = 2;
+        uint32 offset_z = 3;
+        uint32 gain = 4;
+    }
+
+    enum Operation {
+        MULTIPLY = 0;
+        SQUARE = 1;
+        DIVIDE = 2;
+        SQRT = 3;
+        // enables ident for input 0; input 1 is always active as ident
+        IDENT = 4;
+    }
+
+    repeated Calibration calibration = 1;
+    repeated Operation operations = 2;
+}
+
 message ShiftHoldConfig {
     enum State {
         TRACK = 0;
@@ -254,6 +275,8 @@ message Item {
         DependencyInfo dependency_info = 29;
         IpLookupTable ip_lookup_table = 30;
         FrontPanelIOConfig front_panel_io_config = 31;
+
+        MDRConfig mdr_config = 32;
 
         SimConfig sim_config = 1000;
     }
