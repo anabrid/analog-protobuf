@@ -32,6 +32,7 @@ pb.MulConfig.Calibration.offset_x int_size:IS_16
 pb.MulConfig.Calibration.offset_y int_size:IS_16
 pb.MulConfig.Calibration.offset_z int_size:IS_16
 pb.MulConfig.Calibration.gain int_size:IS_8
+pb.MdrConfig.operations max_count:4
 pb.SwitchConfig.muxes max_count:96
 pb.Entity.class_ int_size:IS_8
 pb.Vendor max_size:36
