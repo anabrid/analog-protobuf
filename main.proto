@@ -140,7 +140,8 @@ message Address {
 }
 
 message Mux {
-    optional uint32 state = 1;
+    uint32 state = 1;
+    uint32 index = 2;
 }
 
 //TBlock Config
@@ -149,13 +150,16 @@ message SwitchConfig {
     repeated Mux muxes = 1;
 }
 
-message Trace{
-    uint32 source_node = 1;
-    uint32 source_lane = 2;
+message TraceLane{
+    uint32 carrier = 1;
+    uint32 cluster = 2;
+    uint32 lane = 3;
+}
 
-    uint32 sink_node = 3;
-    uint32 sink_lane = 4;
-    bool sink_upscaled = 5;
+message Trace{
+    TraceLane source = 1;
+    TraceLane sink = 2;
+    bool sink_upscaled = 3;
 }
 
 //Trace config is a more high level Information how devices are connected
