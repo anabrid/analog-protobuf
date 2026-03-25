@@ -696,6 +696,8 @@ message CalibrateLaneCommand {
 message CalibrationData {
     uint32 lane = 1;
     float gain_correction = 2;
+    uint32 weight = 3;
+    uint32 carrier = 4;
 }
 
 message CalibrateDataCommand {
