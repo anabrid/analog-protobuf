@@ -821,6 +821,7 @@ message UpdateCommand{
         UpdateWrite write = 11;
         UpdateCommit commit = 12;
         UpdateAbort abort = 13;
+        UpdateVerify verify = 14;
     }
 };
 
@@ -858,6 +859,11 @@ message UpdateCommit{
 
 //Response: success or failure
 message UpdateAbort{
+
+};
+
+//Response: success or failure
+message UpdateVerify{
 
 };
 
