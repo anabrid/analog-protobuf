@@ -166,6 +166,9 @@ message Trace{
 message DependencyInfo{
     repeated EntityId entity_ids = 1;
     repeated Trace traces = 2;
+
+    //bitset of active lanes
+    uint32 active_lanes = 3;
 }
 
 //TBlock Backplane Config
