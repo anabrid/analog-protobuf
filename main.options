@@ -12,7 +12,7 @@ pb.RegisterExternalEntitiesCommand.entities type:FT_POINTER
 pb.RegisterExternalEntitiesCommand.EntitiesEntry.key max_size:36
 pb.RegisterExternalEntitiesCommand.EntitiesEntry.value max_size:36
 pb.Entity.children type:FT_POINTER
-pb.ErrorMessage.description max_size:128
+pb.ErrorMessage.description max_size:1024
 pb.RunStateChangeMessage.reason max_size:128
 pb.DaqData.data type:FT_CALLBACK
 pb.RunDataEndMessage.data max_count:1024
