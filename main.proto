@@ -254,6 +254,19 @@ message EntitySpecification{
     Entity entity = 1;
 }
 
+message WiringPin {
+    EntityId entity = 1;
+    oneof kind {
+        string named_pin = 2;
+        uint32 indexed_pin = 3;
+    }
+}
+
+message WiringSpecification {
+    WiringPin source = 1;
+    WiringPin target = 2;
+}
+
 message Item {
     EntityId entity = 1;
     oneof kind {
@@ -280,6 +293,7 @@ message Item {
         FrontPanelIOConfig front_panel_io_config = 31;
 
         MDRConfig mdr_config = 32;
+        WiringSpecification wiring_specification = 33;
 
         SimConfig sim_config = 1000;
     }
